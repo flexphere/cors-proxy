@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: flexphere/cors-bypass
+  IMAGE_NAME: flexphere/cors-proxy
 
 jobs:
   build-and-push-image:

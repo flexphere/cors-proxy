@@ -2,27 +2,40 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
 )
 
 var port string
 var target string
+var help bool
 
 func init() {
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage: %s [options...] targetUrl\n", os.Args[0])
+		flag.PrintDefaults()
+	}
+
+	flag.BoolVar(&help, "h", false, "show this help")
 	flag.StringVar(&port, "p", "8080", "port to serve on")
-	flag.StringVar(&target, "t", "", "proxy target url eg:http://example.com")
 	flag.Parse()
 
+	target = flag.Arg(0)
 	if target == "" {
-		flag.Usage()
 		log.Fatalln("ERR: target url must be set")
 	}
 }
 
 func main() {
+	if help {
+		flag.Usage()
+		return
+	}
+
 	targetURL, err := url.Parse(target)
 	if err != nil {
 		log.Fatal("Failed to parse target URL:", err)

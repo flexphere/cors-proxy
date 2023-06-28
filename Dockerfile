@@ -10,6 +10,6 @@ COPY . .
 
 RUN go build .
 
-EXPOSE 30080
+EXPOSE 8080
 
 ENTRYPOINT [ "./cors-proxy" ]

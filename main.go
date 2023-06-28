@@ -12,7 +12,7 @@ var port string
 var target string
 
 func init() {
-	flag.StringVar(&port, "p", "30080", "port to serve on")
+	flag.StringVar(&port, "p", "8080", "port to serve on")
 	flag.StringVar(&target, "t", "", "proxy target url eg:http://example.com")
 	flag.Parse()
 
